@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
@@ -10,10 +9,15 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.18" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Controllers\v1\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cubos.Finance.Data\Cubos.Finance.Data.csproj" />
   </ItemGroup>
 
 </Project>

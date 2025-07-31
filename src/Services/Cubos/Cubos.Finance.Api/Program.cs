@@ -8,6 +8,7 @@ namespace Cubos.Finance.Api
             var builder = WebApplication.CreateBuilder(args);
 
             builder
+            .AddDbContextConfig()
             .AddSwaggerConfig()
             .AddVersioningConfig();
 
