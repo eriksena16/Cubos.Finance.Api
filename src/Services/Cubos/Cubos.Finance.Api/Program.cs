@@ -7,6 +7,10 @@ namespace Cubos.Finance.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder
+            .AddSwaggerConfig()
+            .AddVersioningConfig();
+
             // Add services to the container.
 
             builder.Services.AddControllers();

@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Cubos.Finance.Core
+namespace Cubos.Finance.Shared
 {
     public class MessageHttp
     {

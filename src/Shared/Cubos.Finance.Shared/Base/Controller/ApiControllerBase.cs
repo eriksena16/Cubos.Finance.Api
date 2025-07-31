@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace Cubos.Finance.Core
+namespace Cubos.Finance.Shared
 {
     [ApiController]
     public class ApiControllerBase : ControllerBase

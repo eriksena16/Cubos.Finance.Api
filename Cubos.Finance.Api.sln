@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{8D335E54-45F2-46D6-9805-9FB3BE0D0DFA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{8D335E54-45F2-46D6-9805-9FB3BE0D0DFA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{F1955836-A1D0-460F-88FE-419C6C3C82BD}"
 EndProject
@@ -11,7 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cubos", "Cubos", "{8D47673C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cubos.Finance.Api", "src\Services\Cubos\Cubos.Finance.Api\Cubos.Finance.Api.csproj", "{4C084829-F102-45E0-B0D3-256067627300}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cubos.Finance.Core", "src\Core\Cubos.Finance.Core\Cubos.Finance.Core.csproj", "{E1594BF9-BBB0-49FB-9CC2-FC80595EFF34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cubos.Finance.Application", "src\Services\Cubos\Cubos.Finance.Application\Cubos.Finance.Application.csproj", "{24C8BFDB-760F-465C-8516-301CBF6157DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cubos.Finance.Data", "src\Services\Cubos\Cubos.Finance.Data\Cubos.Finance.Data.csproj", "{E5E30ED9-9063-4147-978E-4A3C21FA59E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cubos.Finance.Domain", "src\Services\Cubos\Cubos.Finance.Domain\Cubos.Finance.Domain.csproj", "{FE0907C9-7A5C-4445-90A8-873DD9147A2F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cubos.Finance.Tests", "src\Services\Cubos\Cubos.Finance.Tests\Cubos.Finance.Tests.csproj", "{0AB316EC-5B3F-4EB5-8D9D-273D362DC884}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cubos.Finance.Shared", "src\Shared\Cubos.Finance.Shared\Cubos.Finance.Shared.csproj", "{B35081D0-2BBC-46ED-86D4-C3EDA7D262B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cubos.Finance.External", "src\Services\Cubos\Cubos.Finance.External\Cubos.Finance.External.csproj", "{3DB533C9-077E-4263-9FF0-706D218D496D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +33,30 @@ Global
 		{4C084829-F102-45E0-B0D3-256067627300}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C084829-F102-45E0-B0D3-256067627300}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C084829-F102-45E0-B0D3-256067627300}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E1594BF9-BBB0-49FB-9CC2-FC80595EFF34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E1594BF9-BBB0-49FB-9CC2-FC80595EFF34}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E1594BF9-BBB0-49FB-9CC2-FC80595EFF34}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E1594BF9-BBB0-49FB-9CC2-FC80595EFF34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24C8BFDB-760F-465C-8516-301CBF6157DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24C8BFDB-760F-465C-8516-301CBF6157DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24C8BFDB-760F-465C-8516-301CBF6157DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24C8BFDB-760F-465C-8516-301CBF6157DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5E30ED9-9063-4147-978E-4A3C21FA59E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5E30ED9-9063-4147-978E-4A3C21FA59E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5E30ED9-9063-4147-978E-4A3C21FA59E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5E30ED9-9063-4147-978E-4A3C21FA59E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE0907C9-7A5C-4445-90A8-873DD9147A2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE0907C9-7A5C-4445-90A8-873DD9147A2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE0907C9-7A5C-4445-90A8-873DD9147A2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE0907C9-7A5C-4445-90A8-873DD9147A2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AB316EC-5B3F-4EB5-8D9D-273D362DC884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AB316EC-5B3F-4EB5-8D9D-273D362DC884}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AB316EC-5B3F-4EB5-8D9D-273D362DC884}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AB316EC-5B3F-4EB5-8D9D-273D362DC884}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B35081D0-2BBC-46ED-86D4-C3EDA7D262B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B35081D0-2BBC-46ED-86D4-C3EDA7D262B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B35081D0-2BBC-46ED-86D4-C3EDA7D262B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B35081D0-2BBC-46ED-86D4-C3EDA7D262B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DB533C9-077E-4263-9FF0-706D218D496D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DB533C9-077E-4263-9FF0-706D218D496D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DB533C9-077E-4263-9FF0-706D218D496D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DB533C9-077E-4263-9FF0-706D218D496D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,7 +64,12 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8D47673C-48DF-47D0-879A-59601CEFE9AA} = {F1955836-A1D0-460F-88FE-419C6C3C82BD}
 		{4C084829-F102-45E0-B0D3-256067627300} = {8D47673C-48DF-47D0-879A-59601CEFE9AA}
-		{E1594BF9-BBB0-49FB-9CC2-FC80595EFF34} = {8D335E54-45F2-46D6-9805-9FB3BE0D0DFA}
+		{24C8BFDB-760F-465C-8516-301CBF6157DC} = {8D47673C-48DF-47D0-879A-59601CEFE9AA}
+		{E5E30ED9-9063-4147-978E-4A3C21FA59E1} = {8D47673C-48DF-47D0-879A-59601CEFE9AA}
+		{FE0907C9-7A5C-4445-90A8-873DD9147A2F} = {8D47673C-48DF-47D0-879A-59601CEFE9AA}
+		{0AB316EC-5B3F-4EB5-8D9D-273D362DC884} = {8D47673C-48DF-47D0-879A-59601CEFE9AA}
+		{B35081D0-2BBC-46ED-86D4-C3EDA7D262B6} = {8D335E54-45F2-46D6-9805-9FB3BE0D0DFA}
+		{3DB533C9-077E-4263-9FF0-706D218D496D} = {8D47673C-48DF-47D0-879A-59601CEFE9AA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A6536D34-9106-461E-8C9E-073555BBBFD9}

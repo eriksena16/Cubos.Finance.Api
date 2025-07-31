@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 
-namespace Cubos.Finance.Core
+namespace Cubos.Finance.Shared
 {
     public abstract class ServiceBase
     {

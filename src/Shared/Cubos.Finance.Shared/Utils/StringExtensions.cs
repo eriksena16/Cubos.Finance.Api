@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Cubos.Finance.Core
+namespace Cubos.Finance.Shared
 {
     public static class StringExtensions
     {
