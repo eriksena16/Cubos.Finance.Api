@@ -10,12 +10,16 @@ namespace Cubos.Finance.Shared
         {
             _notifier = notifier;
         }
-        protected void Notificar(ValidationResult validationResult)
-            => validationResult.Errors.ForEach(erro => Notificar(erro.ErrorMessage));
+        protected void Notify(ValidationResult validationResult)
+            => validationResult.Errors.ForEach(erro => Notify(erro.ErrorMessage));
 
-        protected void Notificar(string mensagem)
+        protected void Notify(string mensagem)
         {
             _notifier.Handle(new Notification(mensagem));
+        }
+        protected bool IsInvalidOperation()
+        {
+            return _notifier?.HasNotification() ?? false;
         }
 
         protected bool ExecutarValidacao<TValidation, TEntity>(TValidation validation, TEntity entity)
@@ -26,7 +30,7 @@ namespace Cubos.Finance.Shared
 
             if (validator.IsValid) return true;
 
-            Notificar(validator);
+            Notify(validator);
 
             return false;
         }
