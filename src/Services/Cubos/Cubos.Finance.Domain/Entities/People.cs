@@ -9,7 +9,8 @@ namespace Cubos.Finance.Domain
         public string Document { get; set; }
         [JsonIgnore]
         public string Password { get; set; }
-        public DateTime CreatedAt => DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+
     }
 }
