@@ -1,12 +1,4 @@
-﻿using Cubos.Finance.Shared;
-
-namespace Cubos.Finance.Application
+﻿namespace Cubos.Finance.Application
 {
-    public class PeopleResponse : Entity
-    {
-        public string Name { get; set; }
-        public string Document { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-    }
+    public record PeopleResponse(Guid Id, string Name, string Document, DateTime CreatedAt, DateTime UpdatedAt);
 }

@@ -7,6 +7,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Cubos.Finance.Shared\Cubos.Finance.Shared.csproj" />
+    <ProjectReference Include="..\Cubos.Finance.Domain\Cubos.Finance.Domain.csproj" />
+    <ProjectReference Include="..\Cubos.Finance.External\Cubos.Finance.External.csproj" />
   </ItemGroup>
 
 </Project>
