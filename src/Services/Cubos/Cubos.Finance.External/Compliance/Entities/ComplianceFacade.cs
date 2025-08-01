@@ -1,4 +1,6 @@
-﻿namespace Cubos.Finance.External
+﻿using Cubos.Finance.Shared;
+
+namespace Cubos.Finance.External
 {
 
     public class ComplianceFacade : IComplianceFacade
@@ -12,17 +14,15 @@
 
         public async Task<bool> IsDocumentValidAsync(string document)
         {
-            var cleanDoc = DocumentHelper.CleanDocument(document);
-
-            if (DocumentHelper.IsCpf(cleanDoc))
+            if (DocumentHelper.IsCpf(document))
             {
-                var response = await _client.ValidateCpfAsync(new DocumentRequest { Document = cleanDoc });
-                return response.Status == 1;
+                var response = await _client.ValidateCpfAsync(new DocumentRequest { Document = document });
+                return response.Data.Status == 1;
             }
-            else if (DocumentHelper.IsCnpj(cleanDoc))
+            else if (DocumentHelper.IsCnpj(document))
             {
-                var response = await _client.ValidateCnpjAsync(new DocumentRequest { Document = cleanDoc });
-                return response.Status == 1;
+                var response = await _client.ValidateCnpjAsync(new DocumentRequest { Document = document });
+                return response.Data.Status == 1;
             }
 
             throw new ArgumentException("Documento inválido: deve conter 11 (CPF) ou 14 (CNPJ) dígitos.");

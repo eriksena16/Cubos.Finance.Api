@@ -12,8 +12,8 @@ namespace Cubos.Finance.External
         [Post("/auth/refresh")]
         Task<TokenResponse> AuthRefreshTokenAsync([Body] TokenRequest request);
         [Post("/cpf/validate")]
-        Task<ComplianceResponse> ValidateCpfAsync([Body] DocumentRequest request);
+        Task<ApiResponse<ComplianceResponse>> ValidateCpfAsync([Body] DocumentRequest request);
         [Post("/cnpj/validate")]
-        Task<ComplianceResponse> ValidateCnpjAsync([Body] DocumentRequest request);
+        Task<ApiResponse<ComplianceResponse>> ValidateCnpjAsync([Body] DocumentRequest request);
     }
 }
