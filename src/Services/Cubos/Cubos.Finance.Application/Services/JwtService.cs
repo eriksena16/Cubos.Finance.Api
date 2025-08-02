@@ -36,7 +36,7 @@ namespace Cubos.Finance.Application
 
             var bearerToken = new BearerToken
             {
-                Token = new JwtSecurityTokenHandler().WriteToken(token),
+                Token = $"Bearer {new JwtSecurityTokenHandler().WriteToken(token)}" ,
             };
             return bearerToken;
         }

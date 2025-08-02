@@ -1,14 +1,12 @@
 ﻿
 
 using Cubos.Finance.Application;
-using Cubos.Finance.Shared;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Cubos.Finance.Api.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/[controller]")]
+    [Route("api/v{version:apiVersion}/auth")]
     public class AuthController : ApiControllerBase
     {
         private readonly IAuthService _authService;

@@ -3,7 +3,6 @@
     public interface IJwtService
     {
         BearerToken GenerateAccessToken(string peopleId);
-        string GenerateRefreshToken();
     }
 
 }

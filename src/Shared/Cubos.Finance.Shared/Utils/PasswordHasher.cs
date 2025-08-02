@@ -1,4 +1,4 @@
-﻿namespace Cubos.Finance.Shared.Utils
+﻿namespace Cubos.Finance.Shared
 {
     public static class PasswordHasher
     {

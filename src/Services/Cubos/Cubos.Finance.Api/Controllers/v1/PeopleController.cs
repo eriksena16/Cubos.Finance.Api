@@ -4,7 +4,7 @@ namespace Cubos.Finance.Api.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/[controller]")]
+    [Route("api/v{version:apiVersion}/people")]
     public class PeopleController : ApiControllerBase
     {
         private readonly IPeopleService _peopleService;
@@ -13,9 +13,12 @@ namespace Cubos.Finance.Api.Controllers
             _peopleService = peopleService;
         }
 
-        [HttpPost("Create")]
+        [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] PeopleRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var response = await _peopleService.CreateAsync(request);
 
             return response != null

@@ -7,7 +7,6 @@ namespace Cubos.Finance.Shared
     public class ApiControllerBase : ControllerBase
     {
         private readonly INotifier _notifier;
-        protected bool AuthenticatedUser { get; set; }
         public ApiControllerBase(INotifier notifier)
         {
             _notifier = notifier;
@@ -29,7 +28,7 @@ namespace Cubos.Finance.Shared
             return BadRequest(new
             {
                 Success = false,
-                errors = _notifier.GetNotifications().Select(n => n.Message)
+                resons = _notifier.GetNotifications().Select(n => n.Message)
             });
         }
 

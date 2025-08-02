@@ -1,6 +1,5 @@
 ﻿using Cubos.Finance.Domain;
 using Cubos.Finance.Shared;
-using Cubos.Finance.Shared.Utils;
 
 namespace Cubos.Finance.Application
 {
@@ -11,6 +10,7 @@ namespace Cubos.Finance.Application
             Document = peopleRequest.Document.CleanDocument(),
             Password = peopleRequest.Password.Hash(),
             CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow,
         };
 
         public static PeopleResponse MapToResponse(this People people) => new

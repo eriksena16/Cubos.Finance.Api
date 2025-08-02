@@ -3,6 +3,7 @@ using System;
 using Cubos.Finance.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Cubos.Finance.Data.Migrations
 {
     [DbContext(typeof(FinanceContext))]
-    partial class FinanceContextModelSnapshot : ModelSnapshot
+    [Migration("20250802131715_FixaccountTable")]
+    partial class FixaccountTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,46 +59,6 @@ namespace Cubos.Finance.Data.Migrations
                     b.HasIndex("PeopleId");
 
                     b.ToTable("BankAccount", "dbo");
-                });
-
-            modelBuilder.Entity("Cubos.Finance.Domain.Card", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("BankAccountId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Cvv")
-                        .HasMaxLength(3)
-                        .IsUnicode(false)
-                        .HasColumnType("character varying(3)");
-
-                    b.Property<string>("Number")
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("Type")
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BankAccountId");
-
-                    b.HasIndex("Number")
-                        .IsUnique();
-
-                    b.ToTable("Card", "dbo");
                 });
 
             modelBuilder.Entity("Cubos.Finance.Domain.People", b =>
@@ -142,22 +105,6 @@ namespace Cubos.Finance.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("People");
-                });
-
-            modelBuilder.Entity("Cubos.Finance.Domain.Card", b =>
-                {
-                    b.HasOne("Cubos.Finance.Domain.BankAccount", "BankAccount")
-                        .WithMany("Cards")
-                        .HasForeignKey("BankAccountId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("BankAccount");
-                });
-
-            modelBuilder.Entity("Cubos.Finance.Domain.BankAccount", b =>
-                {
-                    b.Navigation("Cards");
                 });
 #pragma warning restore 612, 618
         }

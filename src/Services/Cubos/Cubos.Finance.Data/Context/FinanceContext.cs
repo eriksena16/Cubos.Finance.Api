@@ -11,6 +11,8 @@ namespace Cubos.Finance.Data
 
         }
         public DbSet<People> People { get; set; }
+        public DbSet<BankAccount> BankAccount { get; set; }
+        public DbSet<Card> Card { get; set; }
 
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
         {

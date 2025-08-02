@@ -1,16 +1,9 @@
-﻿using Cubos.Finance.Shared.Utils;
+﻿using Cubos.Finance.Domain;
 using Cubos.Finance.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cubos.Finance.Domain;
-using Cubos.Finance.External;
 
 namespace Cubos.Finance.Application
 {
-    public class AuthService : ServiceBase, IAuthService
+    public partial class AuthService : ServiceBase, IAuthService
     {
         private readonly IPeopleRepository _repository;
         private readonly IJwtService _jwtService;
