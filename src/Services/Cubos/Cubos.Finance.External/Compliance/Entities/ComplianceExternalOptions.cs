@@ -6,6 +6,7 @@
         public string BaseAddress { get; set; }
         public string RequestUriCode { get; set; }
         public string RequestUriToken { get; set; }
+        public string RequestUriRefresh { get; set; }
         public string Email { get; set; }
         public string PassWord { get; set; }
     }
