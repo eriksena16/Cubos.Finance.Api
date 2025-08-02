@@ -20,8 +20,15 @@ namespace Cubos.Finance.Tests
         {
             // Arrange
             var cpf = "12345678901";
-            _clientMock.Setup(c => c.ValidateCpfAsync(It.IsAny<DocumentRequest>()))
-                .ReturnsAsync(new ComplianceResponse { Status = 1 });
+            _clientMock.Setup(c => c.ValidateCnpjAsync(It.IsAny<DocumentRequest>()))
+                    .ReturnsAsync(new ApiResponse<ComplianceResponse>
+                    {
+                        Success = true,
+                        Data = new ComplianceResponse
+                        {
+                            Status = 1
+                        }
+                    });
 
             // Act
             var result = await _facade.IsDocumentValidAsync(cpf);
@@ -39,7 +46,14 @@ namespace Cubos.Finance.Tests
             // Arrange
             var cnpj = "12345678000199";
             _clientMock.Setup(c => c.ValidateCnpjAsync(It.IsAny<DocumentRequest>()))
-                .ReturnsAsync(new ComplianceResponse { Status = 1 });
+                    .ReturnsAsync(new ApiResponse<ComplianceResponse>
+                    {
+                        Success = true,
+                        Data = new ComplianceResponse
+                        {
+                            Status = 1
+                        }
+                    });
 
             // Act
             var result = await _facade.IsDocumentValidAsync(cnpj);
@@ -56,8 +70,15 @@ namespace Cubos.Finance.Tests
         {
             // Arrange
             var cpf = "12345678901";
-            _clientMock.Setup(c => c.ValidateCpfAsync(It.IsAny<DocumentRequest>()))
-                .ReturnsAsync(new ComplianceResponse { Status = 0 });
+            _clientMock.Setup(c => c.ValidateCnpjAsync(It.IsAny<DocumentRequest>()))
+                    .ReturnsAsync(new ApiResponse<ComplianceResponse>
+                    {
+                        Success = true,
+                        Data = new ComplianceResponse
+                        {
+                            Status = 0
+                        }
+                    });
 
             // Act
             var result = await _facade.IsDocumentValidAsync(cpf);
