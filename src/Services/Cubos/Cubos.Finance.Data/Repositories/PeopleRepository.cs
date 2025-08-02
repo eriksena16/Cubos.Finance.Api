@@ -18,11 +18,19 @@ namespace Cubos.Finance.Data
 
             return request;
         }
+        public async Task<People> GetByDocumentAsync(string document)
+        {
+            var people = await _context.People
+                .AsNoTracking()
+                .FirstOrDefaultAsync(people => people.Document == document);
+
+            return people;
+        }
         public async Task<bool> HasPeopleAsync(string document)
         {
             return await _context.People
                 .AsNoTracking()
-                .AnyAsync(people => people.Document.ToLower() == document);
+                .AnyAsync(people => people.Document == document);
         }
     }
 }

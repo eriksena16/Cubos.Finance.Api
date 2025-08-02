@@ -11,8 +11,10 @@ namespace Cubos.Finance.Api
             #region Services
             services.AddScoped<INotifier, Notifier>();
             services.AddScoped<IComplianceFacade, ComplianceFacade>();
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IPeopleService, PeopleService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IJwtService, JwtService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<CompliceAuthHandler>();
 

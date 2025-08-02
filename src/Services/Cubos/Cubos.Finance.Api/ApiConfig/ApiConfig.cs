@@ -13,6 +13,7 @@ namespace Cubos.Finance.Api
                             {
                                 options.SuppressModelStateInvalidFilter = true;
                             });
+            builder.Services.AddMemoryCache();
 
             builder.Services.Configure<ComplianceExternalOptions>(
                  builder.Configuration.GetSection(nameof(ComplianceExternalOptions)));

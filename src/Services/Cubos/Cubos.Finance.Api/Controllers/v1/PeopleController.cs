@@ -1,7 +1,4 @@
-﻿
-
-using Cubos.Finance.Application;
-using Cubos.Finance.Shared;
+﻿using Cubos.Finance.Application;
 
 namespace Cubos.Finance.Api.Controllers
 {
@@ -16,8 +13,8 @@ namespace Cubos.Finance.Api.Controllers
             _peopleService = peopleService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] PeopleRequest request)
+        [HttpPost("Create")]
+        public async Task<IActionResult> Create([FromBody] PeopleRequest request)
         {
             var response = await _peopleService.CreateAsync(request);
 
