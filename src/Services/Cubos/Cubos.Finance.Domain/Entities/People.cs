@@ -1,5 +1,6 @@
 ﻿using Cubos.Finance.Shared;
 using Newtonsoft.Json;
+using System.Security.Principal;
 
 namespace Cubos.Finance.Domain
 {
@@ -12,5 +13,16 @@ namespace Cubos.Finance.Domain
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
+    }
+    public class Transaction : Entity
+    {
+        public Guid AccountId { get; set; }      
+        public decimal Value { get; set; }
+        public string Description { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+
+        [JsonIgnore]
+        public BankAccount Account { get; set; }
     }
 }

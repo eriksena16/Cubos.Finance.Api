@@ -3,12 +3,10 @@
 
 namespace Cubos.Finance.Domain
 {
-    public class CardFilter : IQueryObject<Card>
+    public class CardFilter : FilterBase<Card>, IQueryObject<Card>
     {
         public Guid? BankAccountId { get; set; }
         public Guid? PeopleId { get; set; }
-        public int CurrentPage { get; set; }
-        public int ItemsPerPage { get; set; }
 
-    }
+    }    
 }

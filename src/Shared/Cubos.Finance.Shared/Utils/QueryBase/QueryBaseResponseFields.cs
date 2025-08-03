@@ -1,12 +1,10 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Cubos.Finance.Shared
+﻿namespace Cubos.Finance.Shared
 {
     public class QueryBaseResponseFields<TEntity>
     {
-
-        public int CurrentPage { get; set; }
+        public IEnumerable<TEntity> Items { get; set; }
         public int ItemsPerPage { get; set; }
+        public int CurrentPage { get; set; }
         public int TotalItems { get; set; }
         public int TotalPages
         {
@@ -18,6 +16,6 @@ namespace Cubos.Finance.Shared
                 return (int)Math.Ceiling((double)TotalItems / ItemsPerPage);
             }
         }
-        public IEnumerable<TEntity> Items { get; set; }
+
     }
 }

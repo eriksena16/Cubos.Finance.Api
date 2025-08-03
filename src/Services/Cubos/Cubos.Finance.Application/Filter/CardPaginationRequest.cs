@@ -2,9 +2,8 @@
 
 namespace Cubos.Finance.Application
 {
-    public class CardPaginationRequest : IQueryObject<CardPaginationRequest>
+    public class CardPaginationRequest : FilterBase<CardRequest>, IQueryObject<CardRequest>
     {
-        public int CurrentPage { get; set; }
-        public int ItemsPerPage { get; set; }
+        
     }
 }

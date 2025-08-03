@@ -9,10 +9,14 @@ namespace Cubos.Finance.Domain
         public Guid PeopleId { get; set; }
         public string Branch { get; set; }
         public string Account { get; set; }
+        public decimal Balance { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         [JsonIgnore]
         public People People { get; set; }
+        [JsonIgnore]
         public ICollection<Card> Cards { get; set; }
+        [JsonIgnore]
+        public ICollection<Transaction> Transactions { get; set; }
     }
 }

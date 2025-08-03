@@ -57,6 +57,33 @@ namespace Cubos.Finance.Application
 
             return card.MapToCreateResponse();
         }
+        public async Task<TransactionResponse> CreateTransactionAsync(Guid bankAccountId, TransactionRequest request)
+        {
+            var account = await _accountRepository.GetAccountByIdAsync(bankAccountId);
+
+            if (account == null)
+            {
+                Notify("Conta não encontrada.");
+                return null;
+            }
+
+            if (request.Value < 0 && account.Balance + request.Value < 0)
+            {
+                Notify("Saldo insuficiente para realizar a transação.");
+                return null;
+            }
+
+            var transaction = request.Map(bankAccountId);
+
+            account.Balance += request.Value;
+            account.UpdatedAt = DateTime.UtcNow;
+
+            await _cardRepository.CreateAsync(card);
+
+            await _unitOfWork.CommitAsync();
+
+            return card.MapToCreateResponse();
+        }
         public async Task<List<BankAccountResponse>> GetAccountsAsync(Guid peopleId)
         {
             var accounts = (await _accountRepository.GetAccountsAsync(peopleId)).MapToResponse();

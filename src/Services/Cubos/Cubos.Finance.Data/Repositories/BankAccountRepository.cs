@@ -14,11 +14,19 @@ namespace Cubos.Finance.Data
 
         public async Task<List<BankAccount>> GetAccountsAsync(Guid peopleId)
         {
-           var query =  _context.BankAccount.AsQueryable();
+            var query = _context.BankAccount.AsQueryable();
 
             query = ApplyFilter(query, peopleId);
 
             return await query.ToListAsync();
+        }
+        public async Task<BankAccount> GetAccountByIdAsync(Guid accountId)
+        {
+            var account = await _context.BankAccount
+                 .Include(b => b.Transactions)
+                 .FirstOrDefaultAsync(a => a.Id == accountId);
+
+            return account;
         }
         public async Task<BankAccount> CreateAsync(BankAccount request)
         {
@@ -38,7 +46,7 @@ namespace Cubos.Finance.Data
             if (peopleId != Guid.Empty)
             {
                 query = query.Where(account =>
-                    account.PeopleId == peopleId);               
+                    account.PeopleId == peopleId);
             }
 
             return query;

@@ -62,6 +62,15 @@ namespace Cubos.Finance.Api.Controllers
 
             return CustomResponse(card);
         }
+        [HttpPost("{accountId}/transactions")]
+        public async Task<IActionResult> CreateTransaction(Guid accountId, [FromBody] TransactionRequest request)
+        {
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
+
+            var card = await _accountService.CreateCardAsync(accountId, request);
+
+            return CustomResponse(card);
+        }
     }
 
 }
