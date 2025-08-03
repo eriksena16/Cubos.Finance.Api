@@ -9,7 +9,6 @@ namespace Cubos.Finance.Application
         public string Type { get; set; }
 
         [Required(ErrorMessage = "O número é obrigatório.")]
-        [CreditCard(ErrorMessage = "O número do cartão é inválido.")]
         public string Number { get; set; }
 
         [Required(ErrorMessage = "O CVV é obrigatório.")]

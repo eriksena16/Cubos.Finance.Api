@@ -25,6 +25,8 @@ namespace Cubos.Finance.Api
 
             services.AddScoped<IPeopleRepository, PeopleRepository>();
             services.AddScoped<IBankAccountRepository, BankAccountRepository>();
+            services.AddScoped<ICardRepository, CardRepository>();
+
         }
     }
 }

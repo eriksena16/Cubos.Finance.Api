@@ -1,18 +1,27 @@
-﻿using System.Text.RegularExpressions;
-
-namespace Cubos.Finance.Shared
+﻿namespace Cubos.Finance.Shared
 {
     public static class StringExtensions
     {
-        public static bool IsCpfValid(this string cpf)
+        public static bool IsValidCardNumber(this string input)
         {
-            string pattern = @"^\d{3}\.\d{3}\.\d{3}-\d{2}$";
-            return Regex.IsMatch(cpf, pattern);
+            if (string.IsNullOrWhiteSpace(input))
+                return false;
+
+            var digitsOnly = new string(input.Where(char.IsDigit).ToArray());
+            return digitsOnly.Length == 16;
         }
 
-        public static string FormatCPF(this string CPF)
+        public static string FormatCardNumber(this string input)
         {
-            return Convert.ToUInt64(CPF).ToString(@"000\.000\.000\-00");
+            var digitsOnly = new string(input.Where(char.IsDigit).ToArray());
+
+            if (digitsOnly.Length != 16)
+                throw new FormatException("O número do cartão deve ter exatamente 16 dígitos.");
+
+            return string.Join(" ", Enumerable.Range(0, 4)
+                .Select(i => digitsOnly.Substring(i * 4, 4)));
         }
     }
+
+
 }

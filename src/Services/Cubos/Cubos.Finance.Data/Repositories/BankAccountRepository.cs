@@ -30,7 +30,7 @@ namespace Cubos.Finance.Data
         {
             return await _context.BankAccount
                 .AsNoTracking()
-                .AnyAsync(bankAccount => bankAccount.Account == account);
+                .AnyAsync(bankAccount => EF.Functions.ILike(bankAccount.Account, account));
         }
 
         private IQueryable<BankAccount> ApplyFilter(IQueryable<BankAccount> query, Guid peopleId)

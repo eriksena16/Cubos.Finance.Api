@@ -22,7 +22,7 @@ namespace Cubos.Finance.Data
         {
             var people = await _context.People
                 .AsNoTracking()
-                .FirstOrDefaultAsync(people => people.Document == document);
+                .FirstOrDefaultAsync(people => EF.Functions.ILike(people.Document, document));
 
             return people;
         }
@@ -30,7 +30,7 @@ namespace Cubos.Finance.Data
         {
             return await _context.People
                 .AsNoTracking()
-                .AnyAsync(people => people.Document == document);
+                .AnyAsync(people => EF.Functions.ILike(people.Document, document));
         }
     }
 }

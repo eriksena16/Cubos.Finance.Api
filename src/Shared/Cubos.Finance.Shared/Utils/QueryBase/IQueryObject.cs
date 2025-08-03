@@ -6,6 +6,5 @@ namespace Cubos.Finance.Shared
     {
         int CurrentPage { get; set; }
         int ItemsPerPage { get; set; }
-        Dictionary<string, Expression<Func<TEntity, object>>> Map();
     }
 }
