@@ -31,6 +31,7 @@ namespace Cubos.Finance.Application
             return RegisterTransactionBaseAsync(bankAccountId, request, true, t => t.MapToInternalResponse());
         }
 
+
         private async Task<TResponse> RegisterTransactionBaseAsync<TResponse>(Guid bankAccountId, TransactionRequest request, bool isInternal, Func<Transaction, TResponse> mapResponse)
         {
             if (!ValidateTransactionValue(request.Value))

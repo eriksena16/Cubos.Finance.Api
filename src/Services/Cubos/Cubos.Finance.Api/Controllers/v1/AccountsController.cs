@@ -39,7 +39,26 @@ namespace Cubos.Finance.Api.Controllers
             }
 
         }
+        [HttpGet("{accountId}/balance")]
+        [ProducesResponseType(typeof(List<BankAccountBalanceResponse>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> GetAccountBalanceAsync([FromRoute]Guid accountId)
+        {
 
+            try
+            {
+                var accounts = await _accountService.GetAccountBalanceAsync(accountId);
+
+                return CustomResponse(accounts);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, "Erro interno ao processar requicao.");
+            }
+
+        }
         [HttpPost]
         [ProducesResponseType(typeof(List<BankAccountResponse>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ValidationProblemDetails), (int)HttpStatusCode.BadRequest)]

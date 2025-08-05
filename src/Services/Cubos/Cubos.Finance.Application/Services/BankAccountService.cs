@@ -29,5 +29,11 @@ namespace Cubos.Finance.Application
 
             return accounts;
         }
+        public async Task<BankAccountBalanceResponse> GetAccountBalanceAsync(Guid accountId)
+        {
+            var account = (await _accountRepository.GetAccountByIdAsync(accountId)).MapToBalanceResponse();
+
+            return account;
+        }
     }
 }

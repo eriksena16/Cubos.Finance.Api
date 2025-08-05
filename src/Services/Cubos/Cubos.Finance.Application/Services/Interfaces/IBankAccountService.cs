@@ -12,6 +12,6 @@
         /// </summary>
         Task<List<BankAccountResponse>> GetAccountsAsync(Guid peopleId);
 
-
+        Task<BankAccountBalanceResponse> GetAccountBalanceAsync(Guid accountId);
     }
 }
