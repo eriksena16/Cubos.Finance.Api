@@ -18,5 +18,6 @@ namespace Cubos.Finance.Application
         /// </summary>
         Task<TransactionInternalResponse> RegisterTransactionInternalAsync(Guid bankAccountId, TransactionRequest request);
         Task<QueryBaseResponse<TransactionResponse>> GetTransactionsAsync(Guid bankAccountId, TransactionPaginationRequest filterRequest);
+        Task<TransactionResponse> RevertTransactionAsync(Guid accountId, Guid transactionId);
     }
 }

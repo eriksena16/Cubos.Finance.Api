@@ -1,5 +1,6 @@
 ﻿using Cubos.Finance.Domain;
 using Cubos.Finance.Shared;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cubos.Finance.Data
 {
@@ -22,7 +23,13 @@ namespace Cubos.Finance.Data
 
             return result;
         }
+        public async Task<Transaction> GetByIdAsync(Guid transactionId)
+        {
+            var transaction = await _context.Transaction
+                 .FirstOrDefaultAsync(a => a.Id == transactionId);
 
+            return transaction;
+        }
         public async Task<Transaction> CreateAsync(Transaction request)
         {
             await _context.Transaction.AddAsync(request);

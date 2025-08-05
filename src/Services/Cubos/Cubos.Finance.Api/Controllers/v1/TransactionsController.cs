@@ -80,6 +80,12 @@ namespace Cubos.Finance.Api.Controllers
                 throw;
             }
         }
+        [HttpPost("{transactionId}/revert")]
+        public async Task<IActionResult> RevertTransaction(Guid accountId, Guid transactionId)
+        {
+            var result = await _transactionService.RevertTransactionAsync(accountId, transactionId);
+            return CustomResponse(result);
+        }
     }
 
 }

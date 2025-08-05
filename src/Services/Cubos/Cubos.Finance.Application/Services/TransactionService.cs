@@ -1,5 +1,6 @@
 ﻿using Cubos.Finance.Domain;
 using Cubos.Finance.Shared;
+using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
 namespace Cubos.Finance.Application
@@ -31,6 +32,43 @@ namespace Cubos.Finance.Application
             return RegisterTransactionBaseAsync(bankAccountId, request, true, t => t.MapToInternalResponse());
         }
 
+        public async Task<TransactionResponse> RevertTransactionAsync(Guid accountId, Guid transactionId)
+        {
+            var transaction = await _transactionRepository.GetByIdAsync(transactionId);
+
+            if (transaction == null || transaction.BankAccountId != accountId)
+                Notify("Transação não encontrada para esta conta.");
+
+            if (transaction.IsReverted)
+                Notify("Esta transação já foi revertida.");
+
+            if (IsInvalidOperation())
+                return null;
+
+            var account = await _accountRepository.GetAccountByIdAsync(accountId);
+
+            if (transaction.Value >=0 && account.Balance < transaction.Value)
+            {
+                Notify("Saldo insuficiente para reverter o crédito.");
+                return null;
+            }
+
+            var reversed = new Transaction
+            {
+                BankAccountId = accountId,
+                Value = -transaction.Value,
+                Description = $"Reversão de transação {transaction.Id}",
+                CreatedAt = DateTime.UtcNow,
+            };
+
+            transaction.IsReverted = true;
+            account.ApplyBalance(reversed);
+
+            await _transactionRepository.CreateAsync(reversed);
+            await _unitOfWork.CommitAsync();
+
+            return reversed.MapToResponse();
+        }
 
         private async Task<TResponse> RegisterTransactionBaseAsync<TResponse>(Guid bankAccountId, TransactionRequest request, bool isInternal, Func<Transaction, TResponse> mapResponse)
         {
