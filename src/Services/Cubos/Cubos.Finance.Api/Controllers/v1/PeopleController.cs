@@ -17,7 +17,6 @@ namespace Cubos.Finance.Api.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(PeopleResponse), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ValidationProblemDetails), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> Create([FromBody] PeopleRequest request)
         {
