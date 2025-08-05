@@ -59,6 +59,7 @@ namespace Cubos.Finance.Application
                 Value = -transaction.Value,
                 Description = $"Reversão de transação {transaction.Id}",
                 CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow,
             };
 
             transaction.IsReverted = true;
