@@ -16,13 +16,13 @@ namespace Cubos.Finance.Domain
     }
     public class Transaction : Entity
     {
-        public Guid AccountId { get; set; }      
+        public Guid BankAccountId { get; set; }      
         public decimal Value { get; set; }
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
         [JsonIgnore]
-        public BankAccount Account { get; set; }
+        public BankAccount BankAccount { get; set; }
     }
 }

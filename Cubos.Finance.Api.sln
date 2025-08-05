@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cubos.Finance.Tests", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cubos.Finance.Shared", "src\Shared\Cubos.Finance.Shared\Cubos.Finance.Shared.csproj", "{B35081D0-2BBC-46ED-86D4-C3EDA7D262B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cubos.Finance.External", "src\Services\Cubos\Cubos.Finance.External\Cubos.Finance.External.csproj", "{3DB533C9-077E-4263-9FF0-706D218D496D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cubos.Finance.External", "src\Services\Cubos\Cubos.Finance.External\Cubos.Finance.External.csproj", "{3DB533C9-077E-4263-9FF0-706D218D496D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{377F6963-4CCB-4462-8428-55E9DBB2C735}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{8D335E54-45F2-46D6-9805-9FB3BE0D0DFA} = {377F6963-4CCB-4462-8428-55E9DBB2C735}
+		{F1955836-A1D0-460F-88FE-419C6C3C82BD} = {377F6963-4CCB-4462-8428-55E9DBB2C735}
 		{8D47673C-48DF-47D0-879A-59601CEFE9AA} = {F1955836-A1D0-460F-88FE-419C6C3C82BD}
 		{4C084829-F102-45E0-B0D3-256067627300} = {8D47673C-48DF-47D0-879A-59601CEFE9AA}
 		{24C8BFDB-760F-465C-8516-301CBF6157DC} = {8D47673C-48DF-47D0-879A-59601CEFE9AA}

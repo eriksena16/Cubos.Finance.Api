@@ -15,6 +15,8 @@ namespace Cubos.Finance.Api
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IPeopleService, PeopleService>();
             services.AddScoped<IBankAccountService, BankAccountService>();
+            services.AddScoped<ICardService, CardService>();
+            services.AddScoped<ITransactionService, TransactionService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IUserService, UserService>();
@@ -26,6 +28,7 @@ namespace Cubos.Finance.Api
             services.AddScoped<IPeopleRepository, PeopleRepository>();
             services.AddScoped<IBankAccountRepository, BankAccountRepository>();
             services.AddScoped<ICardRepository, CardRepository>();
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
 
         }
     }

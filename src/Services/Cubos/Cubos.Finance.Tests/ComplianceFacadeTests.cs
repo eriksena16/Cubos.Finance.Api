@@ -20,7 +20,7 @@ namespace Cubos.Finance.Tests
         {
             // Arrange
             var cpf = "12345678901";
-            _clientMock.Setup(c => c.ValidateCnpjAsync(It.IsAny<DocumentRequest>()))
+            _clientMock.Setup(c => c.ValidateCpfAsync(It.IsAny<DocumentRequest>()))
                     .ReturnsAsync(new ApiResponse<ComplianceResponse>
                     {
                         Success = true,
@@ -70,7 +70,7 @@ namespace Cubos.Finance.Tests
         {
             // Arrange
             var cpf = "12345678901";
-            _clientMock.Setup(c => c.ValidateCnpjAsync(It.IsAny<DocumentRequest>()))
+            _clientMock.Setup(c => c.ValidateCpfAsync(It.IsAny<DocumentRequest>()))
                     .ReturnsAsync(new ApiResponse<ComplianceResponse>
                     {
                         Success = true,
@@ -99,5 +99,4 @@ namespace Cubos.Finance.Tests
             Assert.Equal("Documento inválido: deve conter 11 (CPF) ou 14 (CNPJ) dígitos.", ex.Message);
         }
     }
-
 }

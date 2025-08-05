@@ -1,6 +1,7 @@
 ﻿
 
 using Cubos.Finance.Application;
+using System.Net;
 
 namespace Cubos.Finance.Api.Controllers
 {
@@ -16,14 +17,28 @@ namespace Cubos.Finance.Api.Controllers
         }
 
         [HttpPost("login")]
+        [ProducesResponseType(typeof(BearerToken), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            var response = await _authService.AuthenticateAsync(request);
+            if (!ModelState.IsValid)
+                return BadRequest(new ValidationProblemDetails(ModelState));
 
-            return response != null
-                ? Ok(response)
-                : BadRequest();
+            try
+            {
+                var response = await _authService.AuthenticateAsync(request);
+
+
+                return Ok(response); // 200
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, "Erro interno ao processar o login.");
+            }
         }
+
 
     }
 }

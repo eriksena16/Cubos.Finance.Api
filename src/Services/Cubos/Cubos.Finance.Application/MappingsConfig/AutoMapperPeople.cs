@@ -17,18 +17,4 @@ namespace Cubos.Finance.Application
              (people.Id, people.Name, people.Document, people.CreatedAt, people.UpdatedAt);
 
     }
-    public static class AutoMapperTransaction
-    {
-        public static Transaction Map(this TransactionRequest transactionRequest, Guid bankAccountId) => new() { 
-            AccountId = bankAccountId,
-            Value = transactionRequest.Value,
-            Description = transactionRequest.Description,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow,
-        };
-
-        public static TransactionResponse MapToResponse(this Transaction transaction) => new
-             (transaction.Id, transaction.Value, transaction.Description, transaction.CreatedAt, transaction.UpdatedAt);
-
-    }
 }

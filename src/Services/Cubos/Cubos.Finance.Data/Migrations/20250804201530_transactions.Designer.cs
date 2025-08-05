@@ -3,6 +3,7 @@ using System;
 using Cubos.Finance.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Cubos.Finance.Data.Migrations
 {
     [DbContext(typeof(FinanceContext))]
-    partial class FinanceContextModelSnapshot : ModelSnapshot
+    [Migration("20250804201530_transactions")]
+    partial class transactions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,7 +146,10 @@ namespace Cubos.Finance.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("BankAccountId")
+                    b.Property<Guid>("AccountId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("BankAccountId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
@@ -164,9 +170,6 @@ namespace Cubos.Finance.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BankAccountId");
-
-                    b.HasIndex("Description")
-                        .IsUnique();
 
                     b.ToTable("Transaction", "dbo");
                 });
@@ -197,9 +200,7 @@ namespace Cubos.Finance.Data.Migrations
                 {
                     b.HasOne("Cubos.Finance.Domain.BankAccount", "BankAccount")
                         .WithMany("Transactions")
-                        .HasForeignKey("BankAccountId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("BankAccountId");
 
                     b.Navigation("BankAccount");
                 });

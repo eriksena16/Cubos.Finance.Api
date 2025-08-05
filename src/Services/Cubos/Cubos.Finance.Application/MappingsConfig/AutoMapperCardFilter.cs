@@ -15,6 +15,5 @@ namespace Cubos.Finance.Application
             };
         }
 
-    }
-
+    }  
 }

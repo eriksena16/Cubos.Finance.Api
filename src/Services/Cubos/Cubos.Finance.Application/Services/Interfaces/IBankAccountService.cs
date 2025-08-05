@@ -1,14 +1,17 @@
-﻿using Cubos.Finance.Domain;
-using Cubos.Finance.Shared;
-
-namespace Cubos.Finance.Application
+﻿namespace Cubos.Finance.Application
 {
     public interface IBankAccountService
     {
+        /// <summary>
+        /// Cria uma nova conta bancária para a pessoa informada.
+        /// </summary>
         Task<BankAccountResponse> CreateAsync(Guid peopleId, BankAccountRequest request);
-        Task<CardResponse> CreateCardAsync(Guid bankAccountId, CardRequest request);
+
+        /// <summary>
+        /// Retorna todas as contas bancárias vinculadas a uma pessoa.
+        /// </summary>
         Task<List<BankAccountResponse>> GetAccountsAsync(Guid peopleId);
-        Task<List<CardResponse>> GetCardsAsync(Guid bankAccountId);
-        Task<QueryBaseResponse<CardResponse>> GetCardsFromPeopleAsync(Guid peopleId, CardPaginationRequest request);
+
+
     }
 }

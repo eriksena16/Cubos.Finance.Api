@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: cubos_finance_postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: ../src
+      dockerfile: ./Services/Cubos/Cubos.Finance.Api/Dockerfile
+    restart: always
+    container_name: finance_api
+    depends_on:
+      - postgres
+    ports:
+      - "5005:5005"
+    env_file:
+      - .env
+
+volumes:
+  postgres_data:

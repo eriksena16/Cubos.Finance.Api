@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace Cubos.Finance.Shared
+﻿namespace Cubos.Finance.Shared
 {
     public interface IQueryObject<TEntity>
     {

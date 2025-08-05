@@ -1,5 +1,5 @@
-﻿using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
+﻿using Cubos.Finance.Shared;
+using System.Security.Claims;
 
 namespace Cubos.Finance.Application
 {
@@ -10,7 +10,7 @@ namespace Cubos.Finance.Application
             var peopleIdClaim = user.FindFirst(ClaimTypes.NameIdentifier);
 
             if (peopleIdClaim == null)
-                throw new UnauthorizedAccessException("User not authenticated");
+                throw new UnauthorizedAccessException(CubosErrorMessages.USER_NOT_AUTHENTICATED);
 
             return Guid.Parse(peopleIdClaim.Value);
         }

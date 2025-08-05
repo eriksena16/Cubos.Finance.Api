@@ -20,5 +20,11 @@ namespace Cubos.Finance.Api
             return builder;
         }
 
+        public static async Task ManageDataAsync(IServiceProvider svcProvider)
+        {
+            var dbContextSvc = svcProvider.GetRequiredService<FinanceContext>();
+
+            await dbContextSvc.Database.MigrateAsync();
+        }
     }
 }

@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+# Environment variables file
+# This file should not be checked in as it may contain sensitive information
+.env

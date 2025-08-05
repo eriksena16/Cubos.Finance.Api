@@ -23,10 +23,10 @@ namespace Cubos.Finance.Application
             var isValid = await _compliance.IsDocumentValidAsync(people.Document);
 
             if (!isValid)
-                Notify("Documento inválido.");
+                Notify(CubosErrorMessages.INVALID_DOCUMENT);
 
             if (await _peopleRepository.HasPeopleAsync(people.Document))
-                Notify("Já existe uma pessoa com este documento.");
+                Notify(CubosErrorMessages.ACCOUNT_ALREADY_EXISTS);
 
             if (IsInvalidOperation())
                 return null;

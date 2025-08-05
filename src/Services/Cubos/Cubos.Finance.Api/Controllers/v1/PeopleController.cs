@@ -1,4 +1,5 @@
 ﻿using Cubos.Finance.Application;
+using System.Net;
 
 namespace Cubos.Finance.Api.Controllers
 {
@@ -13,17 +14,28 @@ namespace Cubos.Finance.Api.Controllers
             _peopleService = peopleService;
         }
 
-        [HttpPost("create")]
+        [HttpPost]
+        [ProducesResponseType(typeof(PeopleResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> Create([FromBody] PeopleRequest request)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+                return BadRequest(new ValidationProblemDetails(ModelState));
+            try
+            {
+                var response = await _peopleService.CreateAsync(request);
 
-            var response = await _peopleService.CreateAsync(request);
+               return CustomResponse(response);
+            }
+            catch (Exception)
+            {
 
-            return response != null
-                ? Ok(response)
-                : BadRequest();
+                throw;
+            }
+
+          
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using Cubos.Finance.Application;
 using Microsoft.AspNetCore.Authorization;
+using System.Net;
 
 namespace Cubos.Finance.Api.Controllers
 {
@@ -18,58 +19,51 @@ namespace Cubos.Finance.Api.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(List<BankAccountResponse>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> GetAccounts()
         {
-            var peopleId = _userService.GetPeopleId(User);
-            var accounts = await _accountService.GetAccountsAsync(peopleId);
 
-            return CustomResponse(accounts);
+            try
+            {
+                var peopleId = _userService.GetPeopleId(User);
+                var accounts = await _accountService.GetAccountsAsync(peopleId);
+
+                return CustomResponse(accounts);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, "Erro interno ao processar requicao.");
+            }
+
         }
-        [HttpGet("{accountId}/cards")]
-        public async Task<IActionResult> GetFromAccountCards([FromRoute] Guid accountId)
-        {
-            if (accountId == Guid.Empty)
-                return CustomResponse(ModelState);
-            var cards = await _accountService.GetCardsAsync(bankAccountId: accountId);
 
-            return CustomResponse(cards);
-        }
-        [HttpGet("cards")]
-        public async Task<IActionResult> GetFromPeopleCards([FromQuery] CardPaginationRequest cardFilter)
-        {
-            var peopleId = _userService.GetPeopleId(User);
-
-            var cards = await _accountService.GetCardsFromPeopleAsync(peopleId, cardFilter);
-
-            return CustomResponse(cards);
-        }
         [HttpPost]
+        [ProducesResponseType(typeof(List<BankAccountResponse>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> CreateAccount([FromBody] BankAccountRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(new ValidationProblemDetails(ModelState));
+
+            try
+            {
+
+                var peopleId = _userService.GetPeopleId(User);
+                var account = await _accountService.CreateAsync(peopleId, request);
+
+                return CustomResponse(account);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, "Erro interno ao processar requicao.");
+            }
             if (!ModelState.IsValid) return CustomResponse(ModelState);
-
-            var peopleId = _userService.GetPeopleId(User);
-            var account = await _accountService.CreateAsync(peopleId, request);
-
-            return CustomResponse(account);
-        }
-        [HttpPost("{accountId}/cards")]
-        public async Task<IActionResult> CreateCard(Guid accountId, [FromBody] CardRequest request)
-        {
-            if (!ModelState.IsValid) return CustomResponse(ModelState);
-
-            var card = await _accountService.CreateCardAsync(accountId, request);
-
-            return CustomResponse(card);
-        }
-        [HttpPost("{accountId}/transactions")]
-        public async Task<IActionResult> CreateTransaction(Guid accountId, [FromBody] TransactionRequest request)
-        {
-            if (!ModelState.IsValid) return CustomResponse(ModelState);
-
-            var card = await _accountService.CreateCardAsync(accountId, request);
-
-            return CustomResponse(card);
         }
     }
 

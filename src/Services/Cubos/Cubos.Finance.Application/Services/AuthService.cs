@@ -3,7 +3,7 @@ using Cubos.Finance.Shared;
 
 namespace Cubos.Finance.Application
 {
-    public partial class AuthService : ServiceBase, IAuthService
+    public class AuthService : ServiceBase, IAuthService
     {
         private readonly IPeopleRepository _repository;
         private readonly IJwtService _jwtService;
@@ -20,14 +20,17 @@ namespace Cubos.Finance.Application
 
             var people = await _repository.GetByDocumentAsync(document);
             if (people == null)
-                Notify("Documento inválido.");
+            {
+                Notify(CubosErrorMessages.INVALID_DOCUMENT);
+                return null;
+            }
 
             var validPassword = PasswordHasher.Verify(request.Password, people.Password);
             if (!validPassword)
-                Notify("Senha inválida.");
-
-            if (IsInvalidOperation())
+            {
+                Notify(CubosErrorMessages.INVALID_PASSWORD);
                 return null;
+            }
 
             return _jwtService.GenerateAccessToken(people.Id.ToString());
         }

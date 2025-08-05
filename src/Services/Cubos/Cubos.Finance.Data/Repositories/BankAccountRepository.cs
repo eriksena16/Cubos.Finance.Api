@@ -23,7 +23,6 @@ namespace Cubos.Finance.Data
         public async Task<BankAccount> GetAccountByIdAsync(Guid accountId)
         {
             var account = await _context.BankAccount
-                 .Include(b => b.Transactions)
                  .FirstOrDefaultAsync(a => a.Id == accountId);
 
             return account;
@@ -50,6 +49,11 @@ namespace Cubos.Finance.Data
             }
 
             return query;
+        }
+
+        public void Update(BankAccount request)
+        {
+            _context.BankAccount.Update(request);
         }
     }
 }
